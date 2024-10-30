@@ -1,7 +1,9 @@
 import { DynamicCounter } from "./components/DynamicCounter.js";
 
-const COUNT_ELEMENT = document.querySelector('.dynamic-counter');
-if(COUNT_ELEMENT instanceof HTMLElement) {
-    const DYNAMIC_COUNTER = new DynamicCounter(COUNT_ELEMENT);
-    DYNAMIC_COUNTER.start();
-}
+const COUNTER_ELEMENTS = document.querySelectorAll('.dynamic-counter');
+COUNTER_ELEMENTS.forEach((counterElement) => {
+    if(counterElement instanceof HTMLElement) {
+        const DYNAMIC_COUNTER = new DynamicCounter(counterElement);
+        DYNAMIC_COUNTER.start();
+    }
+});
