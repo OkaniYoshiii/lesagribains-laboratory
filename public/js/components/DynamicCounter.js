@@ -8,7 +8,7 @@ class DynamicCounter {
         this.#element = element;
     }
     start() {
-        const COUNT_STR = this.#element.textContent;
+        const COUNT_STR = this.#element.textContent?.trim().replaceAll(' ', '');
         if (COUNT_STR === null || Number.isNaN(Number(COUNT_STR)))
             throw new Error('Cannot use a counter with a value which is not of type "number"');
         const COUNT = Number(COUNT_STR);
@@ -18,7 +18,7 @@ class DynamicCounter {
             this.#count += COUNT_SCALE;
             this.#element.textContent = Math.ceil(this.#count).toString();
             if (this.#count >= COUNT) {
-                this.#element.textContent = COUNT.toString();
+                this.#element.textContent = COUNT.toLocaleString();
                 window.cancelAnimationFrame(requestID);
             }
         }, INTERVAL);
